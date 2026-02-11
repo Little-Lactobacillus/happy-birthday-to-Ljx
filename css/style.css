@@ -1,0 +1,553 @@
+/* 生日祝福网站样式表 */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Microsoft YaHei',Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding-inline-start: 20px;
+}
+
+.container{
+    max-width: 800px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    position: relative;
+}
+
+h1 {
+    color: #ff6b6b;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+h2{
+    color: #4169e1;
+    margin-bottom: 15px;
+    border-left: 4px solid #ff6b6b;
+    padding-left: 10px;
+}
+
+p {
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+/* ===== 信封组件样式 ===== */
+.envelope-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    transition: opacity 0.5s ease;
+}
+
+.birthday-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.birthday-content.show {
+    display: block;
+    opacity: 1;
+}
+
+.envelope {
+    position: relative;
+    width: 400px;
+    height: 263px;
+    perspective: 1000px;
+}
+    
+.envelope-front {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/envelope.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    transform-origin: top;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/envelope.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wax-seal {
+    position: relative;
+    width: 125px;
+    height: 125px;
+    background-image: url('../images/Wax-seal.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.wax-seal:hover {
+    transform: scale(1.05);
+}
+
+.wax-seal:active {
+    transform: scale(0.95);
+}
+
+.seal-character {
+    display: none;
+}
+
+.birthday-content.hiding {
+    animation: hideContent 0.8s ease forwards;
+}
+
+@keyframes hideContent {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+        display: none;
+    }
+}
+
+.envelope-hint {
+    margin-top: 30px;
+    color: #666;
+    font-size: 16px;
+    text-align: center;
+    opacity: 0.8;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* 拆封动画 */
+.wax-seal.broken {
+    animation: breakSeal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes breakSeal {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2) rotate(10deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+.envelope-container.hiding {
+    animation: hideEnvelope 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes hideEnvelope {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+        display: none;
+    }
+}
+
+/* ===== 小型唱片机样式 ===== */
+.mini-record-player {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.mini-record-player:hover {
+    opacity: 1;
+}
+
+.record-player {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #2c3e50;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.record-player:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.record {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    background: #111;
+    border-radius: 50%;
+    top: 10px;
+    left: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    animation: rotate 10s linear infinite;
+    animation-play-state: paused;
+    will-change: transform;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.record-center {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: silver;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    border: 1px solid #444;
+}
+
+.record-label {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #e74c3c;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #c0392b;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.record-label span {
+    color: white;
+    font-size: 5px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.record-groove {
+    position: absolute;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+}
+
+.record-groove:nth-child(3) { width: 50px; height: 50px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.record-groove:nth-child(4) { width: 40px; height: 40px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.record-groove:nth-child(5) { width: 30px; height: 30px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+.tone-arm {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    width: 35px;
+    height: 40px;
+    transform-origin: top right;
+    transform: rotate(45deg);
+    transition: transform 0.5s ease;
+    z-index: 4;
+}
+
+.tone-arm.paused {
+    transform: rotate(15deg);
+}
+
+.arm-base {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #7f8c8d;
+    border-radius: 50%;
+    top: -4px;
+    right: 0px;
+    transform: translateX(50%);
+    z-index: 5;
+}
+
+.arm {
+    position: absolute;
+    width: 3px;
+    height: 30px;
+    background: #95a5a6;
+    top: 0px;
+    right: 0px;
+    transform: translateX(50%);
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.arm-head {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #34495e;
+    border-radius: 50%;
+    bottom: 6px;
+    right: 0px;
+    transform: translateX(50%);
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    border: 1px solid #2c3e50;
+}
+
+.player-base {
+    position: absolute;
+    width: 60px;
+    height: 6px;
+    background: #34495e;
+    transform: translate(-10%, 850%);
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* 手机适配 */
+@media (max-width: 768px) {
+    .mini-record-player {
+        top: 10px;
+        right: 10px;
+        width: 100px;
+        height: 100px;
+        opacity: 0.6;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .mini-record-player.mobile-click-animation {
+        animation: mobileClickAnimation 2.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    @keyframes mobileClickAnimation {
+        0% {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        10% {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        90% {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        100% {
+            opacity: 0.6;
+            transform: scale(1);
+        }
+    }
+    
+    .record-player {
+        padding: 10px;
+        border-radius: 12px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .record-player:active {
+        transform: scale(1.02);
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 6px 18px rgba(0,0,0,0.25);
+    }
+    
+    .record {
+        width: 70%;
+        height: 70%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: transform 0.3s ease;
+    }
+    
+    .record-groove:nth-child(3) {
+        width: 50%;
+        height: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .record-groove:nth-child(4) {
+        width: 40%;
+        height: 40%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .record-groove:nth-child(5) {
+        width: 25%;
+        height: 25%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .tone-arm {
+        width: 35px;
+        height: 45px;
+        right: 8px;
+        top: 8px;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .arm {
+        height: 45px;
+        width: 3px;
+        transition: height 0.3s ease;
+    }
+    
+    .arm-head {
+        bottom: -3px;
+        transition: transform 0.3s ease;
+    }
+    
+    .player-base {
+        width: 80px;
+        left: 10px;
+        bottom: 8px;
+    }
+
+    .record-center {
+        width: 12px;
+        height: 12px;
+    }
+
+    .record-label {
+        width: 30px;
+        height: 30px;
+    }
+
+    .record-label span {
+        font-size: 6px;
+    }
+
+    .arm-base {
+        width: 10px;
+        height: 10px;
+        top: -5px;
+    }
+
+    .arm {
+        width: 3px;
+    }
+
+    .arm-head {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* 小屏幕手机适配 (320px-480px) */
+@media (max-width: 480px) {
+    .mini-record-player {
+        width: 90px;
+        height: 90px;
+        top: 8px;
+        right: 8px;
+    }
+    
+    .record-player {
+        padding: 8px;
+        border-radius: 10px;
+    }
+    
+    .tone-arm {
+        width: 30px;
+        height: 40px;
+        right: 6px;
+        top: 6px;
+    }
+    
+    .arm {
+        height: 40px;
+    }
+    
+    .player-base {
+        width: 70px;
+        left: 10px;
+    }
+    
+    .record-label {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .record-label span {
+        font-size: 5px;
+    }
+}
