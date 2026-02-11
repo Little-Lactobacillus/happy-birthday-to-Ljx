@@ -1,0 +1,24 @@
+{
+  "name": "happy-birthday-website",
+  "version": "1.0.0",
+  "description": "一个精美的生日祝福网站",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "build": "echo '构建完成 - 这是一个静态网站，无需构建过程'",
+    "optimize": "node optimize.js",
+    "deploy": "echo '请使用GitHub Pages或其他静态托管服务部署'",
+    "test": "echo '测试功能完整性'"
+  },
+  "keywords": [
+    "birthday",
+    "greeting",
+    "website",
+    "static"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

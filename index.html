@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#c3cfe2">
+    <title>生日快乐</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- ===== 信封组件 ===== -->
+    <div class="envelope-container" id="envelopeContainer">
+        <div class="envelope">
+            <div class="envelope-front">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body">
+                    <div class="wax-seal" id="waxSeal">
+                        <span class="seal-character">拆</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="envelope-hint">点击火漆印拆开信封</div>
+    </div>
+
+    <!-- ===== 生日祝福内容（初始隐藏） ===== -->
+    <div class="birthday-content" id="birthdayContent">
+        <div class="container">
+            <h1>🎉 生日快乐！🎉</h1>
+            <h2>致我亲爱的朋友：<span style="color: #ff1493;">刘婧娴</span></h2>
+            <p>今天是你的20岁生日，祝贺你成为二旬老人！</p>
+            <p>祝愿你在今后的日子里多笑一点，多成为自己的样子！</p>
+            <p>祝愿你万事顺遂，一切安好！</p>
+            <p>今天是你的特别日子，愿你所有的愿望都能实现！</p>
+            <p>希望这个小小的祝福能带给你大大的快乐！</p>
+
+            <div style="text-align: center; margin: 35px 0; font-size: 4em; line-height: 1.2;">
+                🎂
+            </div>
+        
+            <p style="text-align: right; font-style: italic; margin-top: 30px;">
+            —— 来自关心你的朋友<br>
+            <span style="font-size: 0.9em; color: #666;">[2026年2月12日]</span>
+            </p>
+
+            <!-- ===== 小型唱片机 ===== -->
+            <div class="mini-record-player">
+                <!-- 唱片机容器 -->
+                <div class="record-player" id="recordPlayer">
+                    <!-- 唱片 -->
+                    <div class="record">
+                        <div class="record-center"></div>
+                        <div class="record-label">
+                            <span>Happy<br>Day</span>
+                        </div>
+                        <!-- 唱片纹理 -->
+                        <div class="record-groove"></div>
+                        <div class="record-groove"></div>
+                        <div class="record-groove"></div>
+                    </div>
+                    
+                    <!-- 唱臂 -->
+                    <div class="tone-arm">
+                        <div class="arm-base"></div>
+                        <div class="arm"></div>
+                        <div class="arm-head"></div>
+                    </div>
+                    
+                    <!-- 唱片机底座 -->
+                    <div class="player-base"></div>
+                </div>
+            </div>
+
+            <!-- 隐藏的音频元素 -->
+            <audio id="birthdayAudio" loop>
+                <source src="audio/bgMusic.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放。
+            </audio>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
